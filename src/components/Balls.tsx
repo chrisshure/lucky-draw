@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useState } from "react";
 
 interface BallProps {
+  classnames?: string;
   isDrawn: boolean;
   isDisabled: boolean;
   isSelected: boolean;
@@ -11,6 +12,7 @@ interface BallProps {
 }
 
 export const Ball: React.FC<BallProps> = ({
+  classnames,
   isDrawn,
   isDisabled,
   isSelected,
@@ -18,7 +20,7 @@ export const Ball: React.FC<BallProps> = ({
   name,
   onSelected,
 }) => {
-  const classes = classNames("ball", {
+  const classes = classNames("ball", classnames, {
     drawn: isDrawn,
     selected: isSelected,
   });
@@ -36,6 +38,7 @@ export const Ball: React.FC<BallProps> = ({
       <button className={classes} onClick={handleClick}>
         {order > -1 && order}
       </button>
+      <span className="name">{name}</span>
     </div>
   );
 };

@@ -49,9 +49,27 @@ function App() {
     setCurrentPrize(Prizes[0]);
   };
 
+  const exportData = (data: any) => {
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(data)
+    )}`;
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = "data.json";
+
+    link.click();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">Shure 2022 Lucky Draw</header>
+      <header className="App-header">
+        <img
+          className="logo"
+          src="https://www.shure.com/packs/media/images/shure_branding_clean-5f036c9a.svg"
+          alt="Shure"
+        />
+        Shure (Hong Kong) 2022 Lucky Draw
+      </header>
       <div className="App-body">
         <div className="left-column">
           <Balls
@@ -74,9 +92,14 @@ function App() {
       </div>
       <footer className="App-footer">
         <Results results={results} />
-        <button className="button" onClick={handleReset}>
-          Reset
-        </button>
+        <div className="button-container">
+          <button className="button" onClick={handleReset}>
+            Reset
+          </button>
+          <button className="button" onClick={() => exportData(results)}>
+            Export Data
+          </button>
+        </div>
       </footer>
     </div>
   );

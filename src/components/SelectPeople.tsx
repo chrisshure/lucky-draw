@@ -1,13 +1,15 @@
+import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { Prizes, PrizeProps } from "../constants/Prizes";
 import { makeEmptyArray } from "../utilities/array";
 import { Ball } from "./Balls";
 
-const Prize: React.FC<PrizeProps> = ({ name, quantity }) => {
+const Prize: React.FC<PrizeProps> = ({ brand, name, quantity }) => {
   return (
     <div className="prize">
+      <div className="prize-brand">{brand}</div>
       <div className="prize-name">{name}</div>
-      <div className="prize-quantity">{quantity}</div>
+      <div className="prize-quantity">x{quantity}</div>
     </div>
   );
 };
@@ -42,11 +44,15 @@ export const SelectPeople: React.FC<{
   }, [selectedPeople]);
 
   return (
-    <div>
+    <div className="right-content">
       <div className="page">{`${Prizes.indexOf(currentPrize) + 1} of ${
         Prizes.length
       }`}</div>
-      <Prize name={currentPrize.name} quantity={currentPrize.quantity} />
+      <Prize
+        brand={currentPrize.brand}
+        name={currentPrize.name}
+        quantity={currentPrize.quantity}
+      />
 
       <div className="selected-space-container">
         {makeEmptyArray(currentPrize.quantity).map((q, i) => {
@@ -54,8 +60,14 @@ export const SelectPeople: React.FC<{
           const name = selectedPeople[i] ? people[selectedPeople[i] - 1] : "";
           return (
             <div className="selected-ball-container" key={i}>
-              <div className="selected-ball-wrapper">
+              <div
+                className={classNames(
+                  "selected-ball-wrapper",
+                  isConfirmed && "confirmed"
+                )}
+              >
                 <Ball
+                  classnames={classNames(number > 0 && "selected")}
                   isDisabled={true}
                   isDrawn={false}
                   isSelected={false}
@@ -68,16 +80,18 @@ export const SelectPeople: React.FC<{
           );
         })}
       </div>
-      {selectedPeople.length === currentPrize.quantity && !isConfirmed && (
-        <button className="button" onClick={handleConfirm}>
-          Confirm
-        </button>
-      )}
-      {selectedPeople.length === currentPrize.quantity && isConfirmed && (
-        <button className="button" onClick={handleNext}>
-          Next
-        </button>
-      )}
+      <div className="button-container">
+        {selectedPeople.length === currentPrize.quantity && !isConfirmed && (
+          <button className="button" onClick={handleConfirm}>
+            Confirm
+          </button>
+        )}
+        {selectedPeople.length === currentPrize.quantity && isConfirmed && (
+          <button className="button" onClick={handleNext}>
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
 };
