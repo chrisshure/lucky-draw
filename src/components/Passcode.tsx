@@ -1,9 +1,23 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-export const Passcode = () => {
+export const Passcode: React.FC<{ updatePass: (v: boolean) => void }> = ({
+  updatePass
+}) => {
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-  return <input className="passcode" type="password" ref={inputRef} />;
+  const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (inputRef.current.value.toLowerCase() === "shuresm58") {
+      updatePass(true);
+    }
+  };
+  return (
+    <div className="passcode-container">
+      <input
+        autoFocus
+        className="passcode"
+        type="password"
+        ref={inputRef}
+        onKeyUp={handleInput}
+      />
+    </div>
+  );
 };

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Balls } from "./components/Balls";
+import { Passcode } from "./components/Passcode";
 import { Results } from "./components/Results";
 import { SelectPeople } from "./components/SelectPeople";
 import { People } from "./constants/People";
@@ -9,6 +10,7 @@ import { ResultProps } from "./constants/Results";
 import { shuffleArray } from "./utilities/array";
 
 function App() {
+  const [isPassed, setPass] = useState(false);
   const [people, setPeople] = useState(People);
   const [currentPrize, setCurrentPrize] = useState(Prizes[0]);
   const [selectedPeople, selectPeople] = useState<number[]>([]);
@@ -30,7 +32,7 @@ function App() {
     const winners = selectedPeople.map((p) => {
       return {
         number: p,
-        name: People[p - 1],
+        name: People[p - 1]
       };
     });
     setResults([...results, { prize: currentPrize, winners: winners }]);
@@ -62,45 +64,56 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img
-          className="logo"
-          src="https://www.shure.com/packs/media/images/shure_branding_clean-5f036c9a.svg"
-          alt="Shure"
+      {!isPassed ? (
+        <Passcode
+          updatePass={(v) => {
+            setPass(v);
+            handleReset();
+          }}
         />
-        Shure (Hong Kong) {new Date().getFullYear()} Lucky Draw
-      </header>
-      <div className="App-body">
-        <div className="left-column">
-          <Balls
-            people={people}
-            max={currentPrize.quantity}
-            selectedPeople={selectedPeople}
-            drawnPeople={drawnPeople}
-            onSelected={selectingPeople}
-          />
-        </div>
-        <div className="right-column">
-          <SelectPeople
-            people={people}
-            currentPrize={currentPrize}
-            selectedPeople={selectedPeople}
-            confirmPeople={confirmingPeople}
-            nextPrize={goingNextPrize}
-          />
-        </div>
-      </div>
-      <footer className="App-footer">
-        <Results results={results} />
-        <div className="button-container">
-          <button className="button" onClick={handleReset}>
-            Reset
-          </button>
-          <button className="button" onClick={() => exportData(results)}>
-            Export Data
-          </button>
-        </div>
-      </footer>
+      ) : (
+        <>
+          <header className="App-header">
+            <img
+              className="logo"
+              src="https://www.shure.com/packs/media/images/shure_branding_clean-5f036c9a.svg"
+              alt="Shure"
+            />
+            Shure (Hong Kong) {new Date().getFullYear()} Lucky Draw
+          </header>
+          <div className="App-body">
+            <div className="left-column">
+              <Balls
+                people={people}
+                max={currentPrize.quantity}
+                selectedPeople={selectedPeople}
+                drawnPeople={drawnPeople}
+                onSelected={selectingPeople}
+              />
+            </div>
+            <div className="right-column">
+              <SelectPeople
+                people={people}
+                currentPrize={currentPrize}
+                selectedPeople={selectedPeople}
+                confirmPeople={confirmingPeople}
+                nextPrize={goingNextPrize}
+              />
+            </div>
+          </div>
+          <footer className="App-footer">
+            <Results results={results} />
+            <div className="button-container">
+              <button className="button" onClick={handleReset}>
+                Reset
+              </button>
+              <button className="button" onClick={() => exportData(results)}>
+                Export Data
+              </button>
+            </div>
+          </footer>
+        </>
+      )}
     </div>
   );
 }
