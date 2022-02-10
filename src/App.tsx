@@ -68,7 +68,7 @@ function App() {
           src="https://www.shure.com/packs/media/images/shure_branding_clean-5f036c9a.svg"
           alt="Shure"
         />
-        Shure (Hong Kong) 2022 Lucky Draw
+        Shure (Hong Kong) {new Date().getFullYear()} Lucky Draw
       </header>
       <div className="App-body">
         <div className="left-column">
