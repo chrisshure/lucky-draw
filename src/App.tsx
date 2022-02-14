@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import ImageMasonry from "react-image-masonry";
+
 import { Balls } from "./components/Balls";
 import { Passcode } from "./components/Passcode";
 import { Results } from "./components/Results";
@@ -65,12 +67,34 @@ function App() {
   return (
     <div className="App">
       {!isPassed ? (
-        <Passcode
-          updatePass={(v) => {
-            setPass(v);
-            handleReset();
-          }}
-        />
+        <>
+          <div className="masonry-container">
+            <ImageMasonry numCols={6} animate={true} forceOrder={true}>
+              {Prizes.filter((p) => p.inMasonry !== false).map((prize, i) => (
+                <div className="masonry-img-wrapper" key={i}>
+                  <img
+                    className="masonry-img"
+                    src={prize.imgSrc}
+                    alt={prize.name}
+                    title={prize.name}
+                  />
+                  <div className="masonry-img-info">
+                    {prize.brand}
+                    <br />
+                    {prize.name}
+                  </div>
+                </div>
+              ))}
+            </ImageMasonry>
+          </div>
+
+          <Passcode
+            updatePass={(v) => {
+              setPass(v);
+              handleReset();
+            }}
+          />
+        </>
       ) : (
         <>
           <header className="App-header">

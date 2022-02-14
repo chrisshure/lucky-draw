@@ -2,6 +2,42 @@
   text-align: center;
 }
 
+.masonry-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  padding: 8px;
+}
+.masonry-img-wrapper {
+  border: 2px solid transparent;
+  border-width: 0px 2px;
+  position: relative;
+}
+.masonry-img {
+  background-color: #fff;
+}
+.masonry-img-info {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.5s;
+  padding: 16px;
+  font-size: 1.25rem;
+}
+
+.masonry-img-wrapper:hover .masonry-img-info {
+  opacity: 0.8;
+}
+
 .passcode-container {
   height: 100vh;
   width: 100%;

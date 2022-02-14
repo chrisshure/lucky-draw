@@ -46,7 +46,7 @@ export const SelectPeople: React.FC<{
 
   return (
     <div className="right-content">
-      <div className="page">{`${Prizes.indexOf(currentPrize) + 1} of ${
+      <div className="page">{`drawing ${Prizes.indexOf(currentPrize) + 1} of ${
         Prizes.length
       }`}</div>
       <Prize
