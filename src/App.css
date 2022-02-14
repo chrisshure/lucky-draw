@@ -68,10 +68,20 @@
   opacity: 0.3;
 }
 
+.prize-img {
+  max-width: 100%;
+  max-height: 240px;
+  background-color: #fafafa;
+  border-radius: 2px;
+  border: 1px solid white;
+  margin-bottom: 16px;
+}
+
 .prize-brand {
   margin-bottom: 4px;
   color: #b2ff33;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .prize-name {
@@ -87,14 +97,14 @@
 }
 
 .selected-ball-wrapper {
-  width: 48px;
+  width: 60px;
   transition: width 1s ease;
 }
 
 .selected-ball-wrapper.confirmed {
   background-color: #eb008b;
-  border-radius: 24px;
-  width: 280px;
+  border-radius: 30px;
+  width: 360px;
 }
 
 .selected-ball-wrapper.confirmed .ball-wrapper {
@@ -107,7 +117,7 @@
 
 .selected-ball-wrapper.confirmed .ball-wrapper .name {
   width: auto;
-  font-size: 1.2rem;
+  font-size: 2rem;
   margin-left: 20px;
 }
 
@@ -151,22 +161,22 @@
   display: block;
   background: black;
   border-radius: 50%;
-  height: 48px;
-  width: 48px;
+  height: 60px;
+  width: 60px;
   margin: 0;
-  background: radial-gradient(circle at 8px 8px, #b2ff33, #319e01);
+  background: radial-gradient(circle at 16px 16px, #b2ff33, #319e01);
   border: 0 none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
   transition: background 0.5s ease;
 }
 
 .ball.selected {
-  background: radial-gradient(circle at 8px 8px, #eb008b, #d6001c);
+  background: radial-gradient(circle at 16px 16px, #eb008b, #d6001c);
 }
 
 .ball.drawn {
-  background: radial-gradient(circle at 8px 8px, #868688, #333333);
+  background: radial-gradient(circle at 16px 16px, #868688, #333333);
 }
 
 .selected-space-container {

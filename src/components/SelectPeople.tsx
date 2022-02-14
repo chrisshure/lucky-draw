@@ -4,9 +4,10 @@ import { Prizes, PrizeProps } from "../constants/Prizes";
 import { makeEmptyArray } from "../utilities/array";
 import { Ball } from "./Balls";
 
-const Prize: React.FC<PrizeProps> = ({ brand, name, quantity }) => {
+const Prize: React.FC<PrizeProps> = ({ brand, name, quantity, imgSrc }) => {
   return (
     <div className="prize">
+      {imgSrc && <img className="prize-img" src={imgSrc} alt={name} />}
       <div className="prize-brand">{brand}</div>
       <div className="prize-name">{name}</div>
       <div className="prize-quantity">x{quantity}</div>
@@ -52,6 +53,7 @@ export const SelectPeople: React.FC<{
         brand={currentPrize.brand}
         name={currentPrize.name}
         quantity={currentPrize.quantity}
+        imgSrc={currentPrize.imgSrc}
       />
 
       <div className="selected-space-container">
