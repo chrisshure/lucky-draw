@@ -6,7 +6,7 @@ export const Results: React.FC<{ results: ResultProps[] }> = ({ results }) => {
       {results.map((result, i) => (
         <div key={i}>
           <span>{`${result.prize.name} x ${result.prize.quantity}`}</span>
-          <ul>
+          <ul style={{ marginTop: 0 }}>
             {result.winners.map((winner, i) => (
               <li key={i}>{winner.name}</li>
             ))}

@@ -55,3 +55,5 @@ export const People = [
   "Will Chan",
   "William On"
 ];
+
+export const Guests = ["Peter", "Kelly", "George", "Kennex", "Helen Y."];

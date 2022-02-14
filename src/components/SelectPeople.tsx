@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
+import { Guests } from "../constants/People";
 import { Prizes, PrizeProps } from "../constants/Prizes";
 import { makeEmptyArray } from "../utilities/array";
 import { Ball } from "./Balls";
@@ -46,7 +47,21 @@ export const SelectPeople: React.FC<{
 
   return (
     <div className="right-content">
-      <div className="page">{`drawing ${Prizes.indexOf(currentPrize) + 1} of ${
+      <div className="guests">
+        {Guests.map((guest, i) => {
+          const classes = classNames(
+            "guest",
+            currentPrize.group === i && "current"
+          );
+          return (
+            <div key={i} className={classes}>
+              {guest}
+              <span>{i + 1 < Guests.length && `»`} </span>
+            </div>
+          );
+        })}
+      </div>
+      <div className="page">{`Drawing ${Prizes.indexOf(currentPrize) + 1} of ${
         Prizes.length
       }`}</div>
       <Prize

@@ -99,9 +99,26 @@
   padding: 8px;
 }
 
+.guests {
+  display: flex;
+  justify-content: flex-end;
+}
+.guest {
+  color: #fff;
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
+.guest > span {
+  margin: 0 8px;
+}
+.guest.current {
+  opacity: 1;
+}
+
 .page {
   text-align: right;
   opacity: 0.3;
+  font-size: 0.85rem;
 }
 
 .prize-img {
