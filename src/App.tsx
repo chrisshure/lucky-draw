@@ -69,6 +69,7 @@ function App() {
       drawnPeople: [],
       current: 0
     });
+    window.scrollTo(0, 0);
   };
 
   const started = () => {
@@ -83,6 +84,7 @@ function App() {
         handleReset();
       }
     });
+    window.scrollTo(0, 0);
   };
 
   const exportData = (data: any) => {
