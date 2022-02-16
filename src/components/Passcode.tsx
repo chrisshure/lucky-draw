@@ -5,7 +5,7 @@ export const Passcode: React.FC<{ updatePass: (v: boolean) => void }> = ({
 }) => {
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (inputRef.current.value.toLowerCase() === "shuresm58") {
+    if (inputRef.current.value.toLowerCase() === "shuresm57") {
       updatePass(true);
     }
   };

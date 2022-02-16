@@ -12,7 +12,7 @@ export const Prizes: PrizeProps[] = [
     brand: "Panasonic",
     name: "Digital Control Electric Oven",
     imgSrc:
-      "http://www.panasonic.hk/usm.ashx/e/ax6Bgnt1zOKAv2fuNWSytwgPrBmKO49Lxb_RaRcn~9BCbzVPjle3U7lbsbcf47enbzizAyjtvlQ04Al1G~vQXVXAbiEivTXImyicZYYNu2m9wnGHZhEzrQtwlgYydaVGhY5nETRHaRT8h_vVPA~zbTCEBHnRuc5O6zCXQjnsXz4o",
+      "https://www.panasonic.hk/usm.ashx/e/ax6Bgnt1zOKAv2fuNWSytwgPrBmKO49Lxb_RaRcn~9BCbzVPjle3U7lbsbcf47enbzizAyjtvlQ04Al1G~vQXVXAbiEivTXImyicZYYNu2m9wnGHZhEzrQtwlgYydaVGhY5nETRHaRT8h_vVPA~zbTCEBHnRuc5O6zCXQjnsXz4o",
     quantity: 2,
     group: 0
   },
@@ -68,7 +68,7 @@ export const Prizes: PrizeProps[] = [
     brand: "HKTVMall",
     name: "gift card $500 + White Wine",
     imgSrc:
-      "http://images.hktvmall.com/h0001001/272914/h0001001_svc100jan_e7_211231100030_01_1200.jpg",
+      "https://images.hktvmall.com/h0001001/272914/h0001001_svc100jan_e7_211231100030_01_1200.jpg",
     quantity: 4,
     group: 1
   },

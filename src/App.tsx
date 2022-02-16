@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import ImageMasonry from "react-image-masonry";
 
@@ -10,6 +10,7 @@ import { People } from "./constants/People";
 import { Prizes } from "./constants/Prizes";
 import { ResultProps } from "./constants/Results";
 import { shuffleArray } from "./utilities/array";
+import fetch from "./utilities/fetch";
 
 function App() {
   const [isPassed, setPass] = useState(false);
@@ -30,14 +31,23 @@ function App() {
   };
 
   const confirmingPeople = () => {
-    setDrawnPeople([...drawnPeople, ...selectedPeople]);
+    const drawn = [...drawnPeople, ...selectedPeople];
     const winners = selectedPeople.map((p) => {
       return {
         number: p,
-        name: People[p - 1]
+        name: people[p - 1]
       };
     });
-    setResults([...results, { prize: currentPrize, winners: winners }]);
+    const res = [...results, { prize: currentPrize, winners: winners }];
+    setDrawnPeople(drawn);
+    setResults(res);
+
+    fetch.saveData({
+      people: people,
+      results: res,
+      drawnPeople: drawn,
+      current: Prizes.indexOf(currentPrize) + 1
+    });
   };
 
   const goingNextPrize = () => {
@@ -46,11 +56,33 @@ function App() {
   };
 
   const handleReset = () => {
-    setPeople(shuffleArray(people));
+    const shuffledPeople = shuffleArray(people);
+    setPeople(shuffledPeople);
     selectPeople([]);
     setDrawnPeople([]);
     setResults([]);
     setCurrentPrize(Prizes[0]);
+
+    fetch.saveData({
+      people: shuffledPeople,
+      results: [],
+      drawnPeople: [],
+      current: 0
+    });
+  };
+
+  const started = () => {
+    fetch.getData((data) => {
+      console.log(data);
+      if (data.results.length) {
+        setPeople(data.people);
+        setResults(data.results);
+        setDrawnPeople(data.drawnPeople);
+        setCurrentPrize(Prizes[data.current]);
+      } else {
+        handleReset();
+      }
+    });
   };
 
   const exportData = (data: any) => {
@@ -91,7 +123,7 @@ function App() {
           <Passcode
             updatePass={(v) => {
               setPass(v);
-              handleReset();
+              started();
             }}
           />
         </>
