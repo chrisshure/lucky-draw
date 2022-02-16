@@ -56,4 +56,4 @@ export const People = [
   "William On"
 ];
 
-export const Guests = ["Peter", "Kelly", "George", "Kennex", "Helen Y."];
+export const Guests = ["George", "Kennex", "Helen Y."];

@@ -49,10 +49,13 @@ export const SelectPeople: React.FC<{
     <div className="right-content">
       <div className="guests">
         {Guests.map((guest, i) => {
-          const classes = classNames(
-            "guest",
-            currentPrize.group === i && "current"
-          );
+          const drawingSize = Math.floor(Prizes.length / Guests.length);
+          const prizeIndex = Prizes.indexOf(currentPrize) + 1;
+          const classes = classNames("guest", {
+            current:
+              prizeIndex > i * drawingSize &&
+              prizeIndex <= (i + 1) * drawingSize
+          });
           return (
             <div key={i} className={classes}>
               {guest}
@@ -70,7 +73,6 @@ export const SelectPeople: React.FC<{
         quantity={currentPrize.quantity}
         imgSrc={currentPrize.imgSrc}
       />
-
       <div className="selected-space-container">
         {makeEmptyArray(currentPrize.quantity).map((q, i) => {
           const number = selectedPeople[i] ? selectedPeople[i] : -1;
