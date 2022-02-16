@@ -29,4 +29,6 @@ const getData = (callBack?: (data: any) => void) => {
     .then(callBack);
 };
 
-export default { saveData, getData };
+const exportObj = { saveData, getData }
+
+export default exportObj;

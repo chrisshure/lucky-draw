@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
+// @ts-ignore
 import ImageMasonry from "react-image-masonry";
 
 import { Balls } from "./components/Balls";
@@ -35,7 +36,7 @@ function App() {
     const winners = selectedPeople.map((p) => {
       return {
         number: p,
-        name: people[p - 1]
+        name: people[p - 1],
       };
     });
     const res = [...results, { prize: currentPrize, winners: winners }];
@@ -46,7 +47,7 @@ function App() {
       people: people,
       results: res,
       drawnPeople: drawn,
-      current: Prizes.indexOf(currentPrize) + 1
+      current: Prizes.indexOf(currentPrize) + 1,
     });
   };
 
@@ -67,21 +68,22 @@ function App() {
       people: shuffledPeople,
       results: [],
       drawnPeople: [],
-      current: 0
+      current: 0,
     });
     window.scrollTo(0, 0);
   };
 
   const started = () => {
     fetch.getData((data) => {
-      console.log(data);
-      if (data.results.length) {
-        setPeople(data.people);
-        setResults(data.results);
-        setDrawnPeople(data.drawnPeople);
-        setCurrentPrize(Prizes[data.current]);
-      } else {
-        handleReset();
+      if (data.results) {
+        if (data.results.length) {
+          setPeople(data.people);
+          setResults(data.results);
+          setDrawnPeople(data.drawnPeople);
+          setCurrentPrize(Prizes[data.current]);
+        } else {
+          handleReset();
+        }
       }
     });
     window.scrollTo(0, 0);
